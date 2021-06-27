@@ -1,0 +1,5 @@
+ Credentials cache: API:5650
+        Principal: mclerico@42MADRID.COM
+
+  Issued                Expires             Flags    Principal
+Jun 21 13:42:40 2021  Jun 21 16:42:33 2021  FPIA   krbtgt/42MADRID.COM@42MADRID.CO
