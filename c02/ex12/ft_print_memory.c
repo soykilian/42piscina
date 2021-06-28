@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 21:07:55 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/28 13:20:26 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/28 14:16:38 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,22 @@ void	ft_char_to_hex(char src)
 	write(1, p, 2);
 }
 
+void	print_str( char *src)
+{
+	int		j;
+
+	j = 0;
+	while (j < 16)
+	{
+		if (is_printable(src[j]))
+			write(1, &src[j], 1);
+		else
+			write(1, ".", 1);
+		j++;
+	}
+	write(1, "\n", 1);
+}
+
 void	ft_dec_to_hex(char *src, int *i)
 {
 	int		j;
@@ -66,8 +82,10 @@ void	ft_dec_to_hex(char *src, int *i)
 		}
 		j++;
 	}
-	write(1, "\n", 1);
 	*i += j;
+	if (j != 16)
+		write(1, "    ", 4);
+	print_str(src);
 }
 
 void	*ft_print_memory(void *addr, unsigned int size)
@@ -81,7 +99,7 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	inum = 0;
 	i = &inum;
 	while (*i < size)
-	{
+	{	
 		//dir = &addr;
 		ft_dec_to_hex(co, i);
 		if (*i != size)
@@ -92,7 +110,7 @@ void	*ft_print_memory(void *addr, unsigned int size)
 
 int main(void)
 {
-	char	f[46] = "tu puta madre moulinette de los kojones basura";
+	char	f[46] = "tu puta \nadre moulinette de los kojones basura";
 	char	*pi;
 	pi = f;
 	ft_print_memory(pi, 46);
