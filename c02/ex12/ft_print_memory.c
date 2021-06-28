@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 21:07:55 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/28 19:57:40 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/28 21:28:15 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,11 +141,11 @@ void	*ft_print_memory(void *addr, unsigned int size)
 
 int	main(void)
 {
-	char	f[21] = "Bonjour leainddnsss s";
+	char	f[22] = "Bonjour \nleainddnsss s";
 	char	*pi;
 	int		i;
 
 	pi = f;
-	ft_print_memory(pi, 21);
+	ft_print_memory(pi, 22);
 
 }

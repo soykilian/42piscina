@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 13:19:01 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/27 16:55:44 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/28 20:14:00 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 		dest[i] = src[i];
 		i++;
 	}
-	if (i < size || src[i] != 0)
-		dest[i] = '\0';
+	dest[i] = '\0';
 	return (size);
 }
 
