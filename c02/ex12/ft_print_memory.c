@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_memory.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsanchez <dsanchez@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 21:07:55 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/28 14:16:38 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/28 15:01:12 by dsanchez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ void	ft_dec_to_hex(char *src, int *i)
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
-	int		*dir;
 	int		*i;
 	char	*co;
 	int		inum;
@@ -100,7 +99,7 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	i = &inum;
 	while (*i < size)
 	{	
-		//dir = &addr;
+		write(1, &co, 16);
 		ft_dec_to_hex(co, i);
 		if (*i != size)
 			co += 16;
@@ -108,12 +107,32 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	return (addr);
 }
 
-int main(void)
+void	ft_putnbr(long unsigned nbr)
+{
+	char	a;
+	if (nbr < 0)
+	{
+		write(1, "-", 1);
+		nbr =  nbr * -1;
+	}
+	if (nbr >= 10 )
+	{
+		ft_putnbr (nbr / 10);
+		ft_putnbr (nbr % 10);
+	}
+	else
+		a = nbr + '0';
+		write(1, &a, 1);
+}
+
+int	main(void)
 {
 	char	f[46] = "tu puta \nadre moulinette de los kojones basura";
 	char	*pi;
+	int		i;
+	long unsigned		a;
+
 	pi = f;
+	a = (long unsigned)pi;
 	ft_print_memory(pi, 46);
-
-
 }
