@@ -6,11 +6,9 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 14:48:26 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/27 19:59:08 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/29 13:25:22 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <unistd.h>
 
 void	ft_putchar(char c)
 {

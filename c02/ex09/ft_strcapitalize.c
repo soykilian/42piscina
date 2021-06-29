@@ -6,11 +6,10 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/26 20:05:24 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/27 13:01:20 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/29 13:11:42 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 int	is_lowercase(char str)
 {
 	int	i;
@@ -27,9 +26,14 @@ int	is_punct(char str)
 {
 	int	chartrue;
 
-	chartrue = 1;
-	if (str < 32 || str > 47)
-		chartrue = 0;
+	chartrue = 0;
+	if (str > 47 && str < 123)
+	{
+		if ((str > 57 && str < 65) || (str > 90 && str < 97))
+			chartrue = 1;
+	}
+	else
+		chartrue = 1;
 	return (chartrue);
 }
 
@@ -47,21 +51,7 @@ char	*ft_strcapitalize(char *str)
 			if (is_lowercase(str[i + 1]) == 1)
 				str[i + 1] -= 32;
 		}
-		printf("%c", str[i]);
 		i++;
 	}
 	return (str);
-}
-
-int	main(void)
-{
-	char texto[] = "me llamo ? Mar0ia-victoria+clerico";
-	char testo[]  = "0";
-	char *pi;
-	char *p2;
-
-	pi = texto;
-	p2 = testo;
-	p2 = ft_strcapitalize(pi);
-
 }
