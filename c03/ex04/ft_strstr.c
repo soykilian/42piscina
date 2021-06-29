@@ -6,19 +6,20 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 21:18:53 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/28 21:31:23 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/29 09:52:57 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char *ft_strstr(char *str, char *to_find)
 {
-	char 	*pi;
+	char	*pi;
 	int		i;
+	int		j;
 
 	i = 0;
 	while (to_find[i] != 0)
 	{
-		if (str[i] == to_find[i])
-
+		if (str[i] == to_find[j])
+                                   
 	}
 }

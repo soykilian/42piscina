@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 21:07:55 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/28 21:28:15 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/29 09:42:23 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	ft_char_to_hex(char src)
 	write(1, p, 2);
 }
 
-void	print_str( char *src, int *i, int size)
+void	print_str( char *src, unsigned int *i, unsigned int size)
 {
-	int		j;
-	int		a;
+	unsigned int	j;
+	unsigned int	a;
 
 	j = 0;
 	if (size - *i < 16)
@@ -89,11 +89,11 @@ void	dec_char_hex(unsigned long n)
 	write(1, pi, 16);
 }
 
-void	ft_dec_to_hex(char *src, int *i, int size)
+void	ft_dec_to_hex(char *src, unsigned int *i, unsigned int size)
 {
-	int		j;
-	int		cont;
-	int		a;
+	unsigned int	j;
+	int				cont;
+	unsigned int	a;
 
 	j = 0;
 	cont = 0;
@@ -119,9 +119,9 @@ void	ft_dec_to_hex(char *src, int *i, int size)
 
 void	*ft_print_memory(void *addr, unsigned int size)
 {
-	int					*i;
+	unsigned int		*i;
 	char				*co;
-	int					inum;
+	unsigned int		inum;
 	long unsigned		dir;
 
 	co = addr;
@@ -143,7 +143,6 @@ int	main(void)
 {
 	char	f[22] = "Bonjour \nleainddnsss s";
 	char	*pi;
-	int		i;
 
 	pi = f;
 	ft_print_memory(pi, 22);
