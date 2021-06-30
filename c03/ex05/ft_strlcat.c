@@ -1,58 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/27 13:19:01 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/30 19:28:22 by mclerico         ###   ########.fr       */
+/*   Created: 2021/06/29 14:40:56 by mclerico          #+#    #+#             */
+/*   Updated: 2021/06/30 16:56:19 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <string.h>
+#include <stdio.h>
 
 unsigned int	ft_len(char *str)
 {
-	int		length;
-	int		j;
+	unsigned int	j;
 
 	j = 0;
-	length = 0;
 	while (str[j] != '\0')
 		j++;
-	length = j;
-	return (length);
+	return (j);
 }
 
-char	*ft_copy(char *src, char *dest, unsigned int size)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
-	char			*s;
-	char			*d;
-
-	s = src;
-	d = dest;
-	i = 0;
-	while (i++ < size)
-	{
-		*d++ = *s++;
-	}	
-	return (d);
-}
-
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
-{
 	unsigned int	l;
 
-	l = ft_len(src);
-	if (l + 1 > size)
+	i = 0;
+	l = ft_len(dest);
+	while (src[i] != 0 || i < (size - l - 1))
 	{
-		ft_copy(src, dest, size - 1);
-		dest[size - 1] = 0;
+		dest[i] = src[i];
+		i++;
 	}
-	else
-		ft_copy(src, dest, l + 1);
-	return (l);
+	dest[i] = '\0';
+	return (l - ft_len(src));
+}
+
+int main(void)
+{
+	char text1[5] = "hola\0";
+	char text2[11]  = "mavictoria\0";
+	int n;
+	
+	n = strlcat(text1, text2, 7);
+	printf("%s", text1);
 }

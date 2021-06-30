@@ -6,9 +6,12 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 21:18:53 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/29 11:24:51 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:28:38 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <string.h>
+#include <stdio.h>
 
 int	length(char *str)
 {
@@ -50,16 +53,4 @@ char	*ft_strstr(char *str, char *to_find)
 	if (j != length(to_find))
 		index = null;
 	return (index);
-}
-
-int	main(void)
-{
-	char 	text1[] = "Mariavicky\0";
-	char 	text2[] = "vicky\0";
-	char	*s1;
-	char	*s2;
-
-	s1 = text1;
-	s2 = text2;
-	ft_strstr(s1, s2);
 }

@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 21:07:39 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/28 21:17:22 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/30 15:18:00 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,4 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 	}
 	dest[j] = '\0'
 }
+

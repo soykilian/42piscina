@@ -6,11 +6,10 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 21:07:55 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/29 13:26:28 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/29 18:04:39 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <unistd.h>
 
 void	ft_char_to_hex(char src)
@@ -138,3 +137,4 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	}
 	return (addr);
 }
+
