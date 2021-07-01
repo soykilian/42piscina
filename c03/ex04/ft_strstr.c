@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 21:18:53 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/30 15:28:38 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/01 13:42:54 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,35 @@ char	*ft_strstr(char *str, char *to_find)
 	int		i;
 	int		j;
 	char	*index;
-	char	null[1];
+	int		l;
 
 	i = 0;
 	j = 0;
 	index = str;
+	l = length(to_find);
 	while (str[i] != '\0' || (length(str) - i) >= length(to_find))
 	{
-		while (str[i] == to_find[j] && (str[i] != '\0' || to_find[j] != 0 ))
+		if (str[i] == to_find[j])
 		{
 			if (j == 0)
-				index += i;
+				index += i - 1;
 			j++;
 			i++;
-			if (j == length(to_find))
-				return (index);
 		}
-		j = 0;
-		i++;
+		else
+		{
+			j = 0;
+			i++;
+		}
+		if (j == l)
+			return (index);
 	}
-	if (j != length(to_find))
-		index = null;
-	return (index);
+	return (str + i);
+}
+
+int main(void){
+	char a[]= "Mariavivictoria";
+	char b[]= "vic";
+	char *c = ft_strstr(a, b);
+	printf("%s", c);
 }

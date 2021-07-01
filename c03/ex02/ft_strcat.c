@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <string.h>
 
 int	ft_len(char *str)
@@ -44,19 +43,4 @@ char	*ft_strcat(char *dest, char *src)
 	}
 	dest[j] = '\0';
 	return (dest);
-}
-
-int	main(void)
-{
-	char	a[3];
-	char	*p;
-
-	a[0] = 'a';
-	a[1] = 'b';
-	a[2] = 'c';
-	p = a;
-	
-	ft_strcat(p, "def");
-	printf("%s", p);
-	return (0);
 }

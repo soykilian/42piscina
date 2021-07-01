@@ -6,13 +6,13 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/27 21:07:55 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/29 18:04:39 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/01 12:17:14 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_char_to_hex(char src)
+void	ft_char_to_hex(unsigned char src)
 {	
 	char	a[2];
 	char	*p;
@@ -38,19 +38,19 @@ void	ft_char_to_hex(char src)
 	write(1, p, 2);
 }
 
-void	print_str( char *src, unsigned int *i, unsigned int size)
+void	print_str(char *src, unsigned int *i, unsigned int size)
 {
-	unsigned int	j;
-	unsigned int	a;
+	int		j;
+	int		a;
 
 	j = 0;
 	if (size - *i < 16)
 		a = size - *i;
 	else
 		a = 16;
-	while (j < a && src[j] != 0)
+	while (j < a)
 	{
-		if (src[j] > 31 && src[j] < 126)
+		if (src[j] > 31 && src[j] < 127)
 			write(1, &src[j], 1);
 		else
 			write(1, ".", 1);
@@ -90,9 +90,9 @@ void	dec_char_hex(unsigned long n)
 
 void	ft_dec_to_hex(char *src, unsigned int *i, unsigned int size)
 {
-	unsigned int	j;
-	int				cont;
-	unsigned int	a;
+	int		j;
+	int		cont;
+	int		a;
 
 	j = 0;
 	cont = 0;
@@ -100,18 +100,19 @@ void	ft_dec_to_hex(char *src, unsigned int *i, unsigned int size)
 		a = size - *i;
 	else
 		a = 16;
-	while (j < a && src[j] != 0)
+	while (j < a)
 	{
-		ft_char_to_hex(src[j]);
+		ft_char_to_hex((unsigned char)src[j++]);
 		if (cont++ == 1)
 		{
 			write (1, " ", 1);
 			cont = 0;
 		}
-		j++;
 	}
+	cont = 0;
 	if (j != 16)
-		write(1, "    ", 4);
+		while (cont++ < 40 - (j / 2 + 2 * j))
+			write(1, " ", 1);
 	print_str(src, i, size);
 	*i += j;
 }
@@ -137,4 +138,3 @@ void	*ft_print_memory(void *addr, unsigned int size)
 	}
 	return (addr);
 }
-

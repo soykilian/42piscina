@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/29 14:40:56 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/30 16:56:19 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/01 17:13:09 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,44 @@ unsigned int	ft_len(char *str)
 	return (j);
 }
 
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+void	ft_cat(char *dest, char *src, unsigned int size)
 {
-	unsigned int	i;
 	unsigned int	l;
+	unsigned int	i;
 
-	i = 0;
 	l = ft_len(dest);
-	while (src[i] != 0 || i < (size - l - 1))
+	i = 0;
+	while (i < size)
 	{
-		dest[i] = src[i];
+		dest[l + i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (l - ft_len(src));
+	dest[l + i] = 0;
+}
+
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
+{
+	unsigned int	l;
+	unsigned int	ls;
+
+	ls = ft_len(src);
+	l = ft_len(dest);
+	if (size <= l)
+		return (ls + l);
+	if (ls + l + 1 > size)
+		ft_cat(dest, src, size - l - 1);
+	else if (size > l + 1)
+		ft_cat(dest, src, ls);
+	return (l + ls);
 }
 
 int main(void)
 {
-	char text1[5] = "hola\0";
-	char text2[11]  = "mavictoria\0";
-	int n;
+	char text1[] = "hola\0";
+	char text2[20]  = "mavict";
 	
-	n = strlcat(text1, text2, 7);
-	printf("%s", text1);
+	//strlcat(text2, text1, 4);
+	ft_strlcat(text2, text1, 8);
+	printf("%s \n", text2);
+	printf("%d", text2[7]);
 }

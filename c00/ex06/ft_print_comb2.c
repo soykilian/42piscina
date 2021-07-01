@@ -6,65 +6,61 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/23 17:40:44 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/26 18:41:52 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/06/30 19:53:48 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_init_char(int num)
+void	fill_array(char *a)
 {
-	int		rest;
-	char	ch_f;
-
-	if (num < 10)
-	{
-		ch_f = num + 48;
-		write(1, &ch_f, 1);
-	}
-	else
-	{
-		ft_init_char(num / 10);
-		rest = (num % 10);
-		ch_f = rest + 48;
-		write(1, &ch_f, 1);
-	}
+	a[0] = '0';
+	a[1] = '/';
+	a[2] = ' ';
+	a[3] = '0';
+	a[4] = '0';
+	a[5] = ',';
+	a[6] = ' ';
 }
 
-void	imprimir (int x, int y)
+void	update_rigth_num(char *a)
 {
-	if (x == 0 || x < 10 )
+	while (a[3] <= '9')
 	{
-		write(1, "0", 1);
+		++a[4];
+		if (a[4] > '9')
+		{
+			a[4] = '0';
+			++a[3];
+			if (a[3] <= '9')
+				write(1, a, 7);
+		}
+		else if (a[0] == '9' && a[1] == '8' && a[3] == '9' && a[0] == '9')
+		{
+			write(1, a, 5);
+		}
+		else
+		{
+			write(1, a, 7);
+		}		
 	}
-	ft_init_char(x);
-	write(1, " ", 1);
-	if (y == 0 || y < 10)
-	{
-		write(1, "0", 1);
-	}
-	ft_init_char(y);
-	write(1, ",", 1);
 }
 
 void	ft_print_comb2(void)
 {
-	int	x;
-	int	y;
+	char	a[7];
 
-	y = 0;
-	x = 0;
-	while (x != 99)
+	fill_array(a);
+	while (a[0] <= '9')
 	{
-		while (y != 99)
+		++a[1];
+		if (a[1] > '9')
 		{
-			y++;
-			if (x < y)
-			{
-				imprimir(x, y);
-			}
+			a[1] = '0';
+			++a[0];
 		}
-		x++;
-		y = 00;
-	}
+		a[3] = a[0];
+		a[4] = a[1];
+		update_rigth_num (a);
+	}	
 }
