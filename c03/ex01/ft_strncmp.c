@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 16:57:56 by mclerico          #+#    #+#             */
-/*   Updated: 2021/06/30 21:12:11 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/01 17:37:35 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@ int	ft_value (char *src, unsigned int n)
 	int				c;
 	unsigned int	i;
 
+	c = 0;
 	i = 0;
 	while (i < n)
 	{

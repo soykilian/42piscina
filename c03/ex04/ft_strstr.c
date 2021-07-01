@@ -6,60 +6,55 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 21:18:53 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/01 13:42:54 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/01 17:28:02 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
 
-int	length(char *str)
+int	ft_strlen(char *str)
 {
-	int		length;
-	int		j;
+	int		c;
+
+	c = 0;
+	while (*str != 0)
+	{
+		c++;
+		str++;
+	}
+	return (c);
+}
+
+int	check_possible_needle(char *p, char *needle)
+{
+	int	f_size;
+	int	j;
 
 	j = 0;
-	length = 0;
-	while (str[j] != '\0')
+	f_size = 0;
+	while (*p == needle[j])
+	{
+		f_size++;
 		j++;
-	length = j;
-	return (length);
+		p++;
+	}
+	return (f_size);
 }
 
 char	*ft_strstr(char *str, char *to_find)
 {
-	int		i;
-	int		j;
-	char	*index;
-	int		l;
+	int	size;
 
-	i = 0;
-	j = 0;
-	index = str;
-	l = length(to_find);
-	while (str[i] != '\0' || (length(str) - i) >= length(to_find))
+	size = ft_strlen(to_find);
+	while (*str != 0)
 	{
-		if (str[i] == to_find[j])
+		if (*str == to_find[0])
 		{
-			if (j == 0)
-				index += i - 1;
-			j++;
-			i++;
+			if (check_possible_needle(str, to_find) == size)
+				return (str - size);
 		}
-		else
-		{
-			j = 0;
-			i++;
-		}
-		if (j == l)
-			return (index);
+		str++;
 	}
-	return (str + i);
-}
-
-int main(void){
-	char a[]= "Mariavivictoria";
-	char b[]= "vic";
-	char *c = ft_strstr(a, b);
-	printf("%s", c);
+	return (str);
 }

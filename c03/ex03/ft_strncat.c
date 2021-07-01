@@ -6,14 +6,14 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 21:07:39 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/01 13:05:27 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/01 17:39:18 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strncat(char *dest, char *src, unsigned int nb)
 {
-	int	j;
-	int	i;
+	unsigned int	i;
+	int				j;
 
 	j = 0;
 	i = 0;
@@ -27,5 +27,5 @@ char	*ft_strncat(char *dest, char *src, unsigned int nb)
 		i++;
 	}
 	dest[j] = '\0';
+	return (dest);
 }
-
