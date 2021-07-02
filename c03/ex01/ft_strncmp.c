@@ -6,24 +6,9 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 16:57:56 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/01 17:37:35 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/01 19:00:43 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int	ft_value (char *src, unsigned int n)
-{
-	int				c;
-	unsigned int	i;
-
-	c = 0;
-	i = 0;
-	while (i < n)
-	{
-		c += src[i];
-		i++;
-	}
-	return (c);
-}
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
@@ -35,5 +20,8 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 		s2++;
 		s1++;
 	}
-	return (s1 - s2);
+	if (i < n)
+		return ((unsigned char)s1 - (unsigned char)s2);
+	else
+		return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 21:18:53 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/01 17:28:02 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/02 12:50:17 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_possible_needle(char *p, char *needle)
 
 	j = 0;
 	f_size = 0;
-	while (*p == needle[j])
+	while (*p == needle[j] && needle[j] && *p)
 	{
 		f_size++;
 		j++;
@@ -47,14 +47,16 @@ char	*ft_strstr(char *str, char *to_find)
 	int	size;
 
 	size = ft_strlen(to_find);
+	if (to_find[0] == '\0')
+		return (str);
 	while (*str != 0)
 	{
 		if (*str == to_find[0])
 		{
 			if (check_possible_needle(str, to_find) == size)
-				return (str - size);
+				return (str);
 		}
 		str++;
 	}
-	return (str);
+	return (0);
 }
