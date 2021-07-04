@@ -6,29 +6,29 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:19:17 by satienza          #+#    #+#             */
-/*   Updated: 2021/07/04 18:18:45 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/04 19:34:37 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "comprobar_condiciones.h"
-int	comprobarVistas(char tablero[4][4], char input[4][4], int IJ[2], char can)
+int	comprobarVistas(char t[4][4], char input[4][4], int IJ[2], char can)
 {
 	int		correcto;
 
 	correcto = 1;
 	if (can != '0')
-		tablero[IJ[0]][IJ[1]] = can;
+		t[IJ[0]][IJ[1]] = can;
 	if (IJ[1] == 3)
 	{
-		correcto = colULt(tablero, input, IJ);
+		correcto = colULt(t, input, IJ);
 		if (correcto == 0 && can != '0')
-			tablero[IJ[0]][IJ[1]] = '0';
+			t[IJ[0]][IJ[1]] = '0';
 	}
 	if (IJ[0] == 3)
 	{
-		correcto = filUlt (tablero, input, IJ);
+		correcto = filUlt (t, input, IJ);
 		if (correcto == 0 && can != '0')
-			tablero[IJ[0]][IJ[1]] = '0';
+			t[IJ[0]][IJ[1]] = '0';
 	}
 	return (correcto);
 }
