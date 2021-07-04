@@ -14,7 +14,7 @@ int	comprueba_params(int n, char *cond, char params[4][4])
 	k = 1;
 	if (n != 2)
 		return (0);
-	while (i < 31)
+	while (i < 30)
 	{
 		if (i % 2 != 0 && cond[i] != 32)
 			return (0);

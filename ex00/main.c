@@ -8,36 +8,6 @@ void	print_table( char tablero[4][4]);
 void	rascacielosBacktraking(char t[4][4], char i[4][4], int *sol, int IJ[2]);
 int		aceptable(char t[4][4], char input[4][4], int IJ[2], char candidato);
 
-int	main(int args, char **argv)
-{
-	int		i_j[2];
-	char	tablero[4][4];
-	int		solucion;
-	char	params[4][4];
-
-	i_j[0] = 0;
-	i_j[1] = 0;
-	solucion = 0;
-	if ((!comprueba_params(argv[1], params) || argv[1][31] != 0))
-	{
-		write (1, "Error\n", 6);
-		return (0);
-	}
-	if (args != 2)
-	{
-		write (1, "Error\n", 6);
-		return (0);
-	}
-	fill_table(tablero);
-	rascacielosBacktraking(tablero, params, &solucion, i_j);
-	if (solucion == 0)
-		write (1, "Error j\n", 8);
-	else
-		print_table(tablero);
-}
-//void parametros1(char *colUp1, char *coldown1, char *rowLeft1, char *rowRight1);
-
-
 void	print_table( char tablero[4][4])
 {
 	int	i;
@@ -59,6 +29,18 @@ void	print_table( char tablero[4][4])
 	}
 }
 
+void	ft_backwards(int IJ[2], char t [4][4])
+{
+	if (IJ[1] > 0)
+		IJ[1]--;
+	else
+	{
+		IJ[1] = 3;
+		IJ[0]--;
+	}	
+	t[IJ[0]][IJ[1]] = '0';
+}
+
 void	rascacielosBacktraking(char t[4][4], char i[4][4], int *sol, int IJ[2])
 {
 	char	c;
@@ -77,20 +59,10 @@ void	rascacielosBacktraking(char t[4][4], char i[4][4], int *sol, int IJ[2])
 		{
 			if (aceptable(t, i, IJ, c) == 1)
 			{
-				t[IJ[0]][IJ[1]] = c;
-				IJ[1]++;
+				t[IJ[0]][IJ[1]++] = c;
 				rascacielosBacktraking(t, i, sol, IJ);
 				if (esSolucion(t, i) == 0)
-				{
-					if (IJ[1] > 0)
-						IJ[1]--;
-					else
-					{
-						IJ[1] = 3;
-						IJ[0]--;
-					}	
-					t[IJ[0]][IJ[1]] = '0';
-				}
+					ft_backwards(IJ, t);
 			}
 			c++;
 		}
@@ -126,36 +98,30 @@ int	aceptable(char t[4][4], char input[4][4], int IJ[2], char candidato)
 	return (correcto);
 }
 
-int    main(int args, char **argv)
+int	main(int args, char **argv)
 {
-    int         i_j[2];
-    char        tablero[4][4];
-    int         solucion;
-    char        params[4][4];
+	int		i_j[2];
+	char	tablero[4][4];
+	int		solucion;
+	char	params[4][4];
 
-    i_j[0] = 0;
-    i_j[1] = 0;
-    solucion = 0;
-    if (!comprueba_params(args, argv[1], params))
-    {
-        write (1, "Error\n", 6);
-        return (0);
-    }
-;    while (i_j[0] < 4)
-    {
-        while (i_j[1] < 4)
-            tablero[i_j[0]][i_j[1]++] = '0';
-        if (i_j[1] == 4)
-        {
-            i_j[0]++;
-            i_j[1] = 0;
-        }
-    }
-    i_j[0] = 0;
-    i_j[1] = 0;
-    rascacielosBacktraking(tablero, params, &solucion, i_j);
-    if (solucion == 0)
-        write (1, "Error\n", 6);
-    else
-        print_table(params);
+	i_j[0] = 0;
+	i_j[1] = 0;
+	solucion = 0;
+	if (!comprueba_params(argv[1], params))
+	{
+		write (1, "Error k\n", 8);
+		return (0);
+	}
+	if (args != 2)
+	{
+		write (1, "Error i\n", 8);
+		return (0);
+	}
+	fill_table(tablero);
+	rascacielosBacktraking(tablero, params, &solucion, i_j);
+	if (solucion == 0)
+		write (1, "Error j\n", 8);
+	else
+		print_table(tablero);
 }

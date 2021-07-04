@@ -1,4 +1,3 @@
-#include "utils.h"
 int	comprueba_params(char *cond, char params[4][4])
 {
 	int	i;
@@ -6,16 +5,17 @@ int	comprueba_params(char *cond, char params[4][4])
 	int	k;
 
 	i = -1;
-	j = 1;
+	j = 0;
 	k = 1;
 	while (i++ < 30)
 	{
 		if ((cond[i] > 48 && cond[i] < 53) && (i % 2 == 0))
 		{
 			params[k - 1][j] = cond[i];
-			if (j++ % 4 == 0)
+			j++;
+			if (j % 4 == 0)
 			{
-				j = 1;
+				j = 0;
 				k++;
 			}
 		}
