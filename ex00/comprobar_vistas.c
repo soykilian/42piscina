@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comprobar_vistas.h                                 :+:      :+:    :+:   */
+/*   comprobar_vistas.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satienza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:19:17 by satienza          #+#    #+#             */
-/*   Updated: 2021/07/04 13:51:01 by satienza         ###   ########.fr       */
+/*   Updated: 2021/07/04 18:18:45 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "comprobar_condiciones.h"
 int	comprobarVistas(char tablero[4][4], char input[4][4], int IJ[2], char can)
 {
 	int		correcto;
 
+	correcto = 1;
 	if (can != '0')
 		tablero[IJ[0]][IJ[1]] = can;
 	if (IJ[1] == 3)
 	{
-		if (can != '0')
-			tablero[IJ[0]][IJ[1]] = '0';
 		correcto = colULt(tablero, input, IJ);
+		if (correcto == 0 && can != '0')
+			tablero[IJ[0]][IJ[1]] = '0';
 	}
 	if (IJ[0] == 3)
 	{
-		if (can != '0')
-			tablero[IJ[0]][IJ[1]] = '0';
 		correcto = filUlt (tablero, input, IJ);
+		if (correcto == 0 && can != '0')
+			tablero[IJ[0]][IJ[1]] = '0';
 	}
 	return (correcto);
 }
