@@ -1,15 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comprobar_vistas.h                                 :+:      :+:    :+:   */
+/*   comprobar_vistas.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: satienza <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mariavictoria <mariavictoria@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 10:19:17 by satienza          #+#    #+#             */
-/*   Updated: 2021/07/04 13:51:01 by satienza         ###   ########.fr       */
+/*   Updated: 2021/07/04 17:30:37 by mariavictor      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "comprobar_vistas.h"
+#include "comprobar_condiciones.h"
 int	comprobarVistas(char tablero[4][4], char input[4][4], int IJ[2], char can)
 {
 	int		correcto;

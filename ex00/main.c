@@ -1,44 +1,45 @@
 #include <unistd.h>
 #include <stdio.h>
-#include <comprobar_condiciones.h>
-#include <essolucion.h>
-#include <comprobar_vistas.h>
-#include <main.h>
-//void parametros1(char *colUp1, char *coldown1, char *rowLeft1, char *rowRight1);
+#include "essolucion.h"
+#include "comprobar_condiciones.h"
+#include "comprobar_vistas.h"
 
-int    main(int args, char **argv)
-
+int aceptable(char tablero[4][4],char input[4][4],int IJ[2],char candidato);
+void    print_table( char tablero[4][4]);
+int    comprueba_params(int n, char *cond, char params[4][4]);
+void rascacielosBacktraking(char tablero[4][4], char input[4][4],int *solucion,int IJ[2])
 {
-    int        i;
-    int        j;
-    char    tablero[4][4];
-    int        *solucion;
-    char    params[4][4];
-
-    i = 0;
-    j = 0;
-    solucion = 0;
-    if (!comprueba_params(args, argv[1], params))
+    if(esSolucion(tablero, input)==1)
     {
-        write (1, "Error\n", 6);
-        return (0);
+        *solucion = 1;
     }
-;    while (i < 4)
+    else
     {
-        while (j < 4)
-            tablero[i][j++] = '0';
-        if ( j == 4)
+        char c = '1';
+        if (IJ[1] == 4)
         {
-            i++;
-            j = 0;
+            IJ[1] = 0;
+            IJ[0]++;
+        }
+        while (c <='4' && IJ[0]<4 && IJ[1]<4)
+        {
+            if (aceptable(tablero,input, IJ,c)==1)
+            {
+                tablero[IJ[0]][IJ[1]]=c;
+                IJ[1]++;
+                rascacielosBacktraking(tablero,input,solucion,IJ);
+                if(*solucion==0)
+                {
+                    IJ[1]--;
+                    tablero[IJ[0]][IJ[1]]='0';
+                }
+            }
+            c++;
         }
     }
-    rascacielosBacktraking(tablero, params, &solucion, 0, 0);
-    if (solucion == 0)
-        write (1, "ERROR\n", 6);
-    else
-        print_table(params);
 }
+//void parametros1(char *colUp1, char *coldown1, char *rowLeft1, char *rowRight1);
+
 
 int    comprueba_params(int n, char *cond, char params[4][4])
 {
@@ -93,37 +94,6 @@ void    print_table( char tablero[4][4])
     }
 }
 
-void rascacielosBacktraking(char tablero[4][4], char input[4][4],int *solucion,int IJ[2])
-{
-    if(esSolucion(tablero, input)==1)
-    {
-        *solucion = 1;
-    }
-    else
-    {
-        char c = '1';
-        if (IJ[1] == 4)
-        {
-            IJ[1] = 0;
-            IJ[0]++;
-        }
-        while (c <='4' && IJ[0]<4 && IJ[1]<4)
-        {
-            if (aceptable(tablero,input, IJ,c)==1)
-            {
-                tablero[IJ[0]][IJ[1]]=c;
-                IJ[1]++;
-                rascacielosBacktraking(tablero,input,solucion,IJ);
-                if(*solucion==0)
-                {
-                    IJ[1]--;
-                    tablero[IJ[0]][IJ[1]]='0';
-                }
-            }
-            c++;
-        }
-    }
-}
 
 int aceptable(char tablero[4][4],char input[4][4],int IJ[2],char candidato)
 {
@@ -152,4 +122,38 @@ int aceptable(char tablero[4][4],char input[4][4],int IJ[2],char candidato)
 
     }
     return correcto;
+}
+
+int    main(int args, char **argv)
+{
+    int         i_j[2];
+    char        tablero[4][4];
+    int         solucion;
+    char        params[4][4];
+
+    i_j[0] = 0;
+    i_j[1] = 0;
+    solucion = 0;
+    if (!comprueba_params(args, argv[1], params))
+    {
+        write (1, "Error\n", 6);
+        return (0);
+    }
+;    while (i_j[0] < 4)
+    {
+        while (i_j[1] < 4)
+            tablero[i_j[0]][i_j[1]++] = '0';
+        if (i_j[1] == 4)
+        {
+            i_j[0]++;
+            i_j[1] = 0;
+        }
+    }
+    i_j[0] = 0;
+    i_j[1] = 0;
+    rascacielosBacktraking(tablero, params, &solucion, i_j);
+    if (solucion == 0)
+        write (1, "Error\n", 6);
+    else
+        print_table(params);
 }

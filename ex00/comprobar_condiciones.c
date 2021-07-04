@@ -1,4 +1,5 @@
-#include <comprobar_vistas.h>
+#include "comprobar_condiciones.h"
+#include "comprobar_vistas.h"
 int	colULt (char tablero[4][4], char input[4][4], int IJ[2])
 {
 	int	correcto;

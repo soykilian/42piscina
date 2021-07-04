@@ -1,4 +1,5 @@
-#include <comprobar_vistas.h>
+#include "essolucion.h"
+#include "comprobar_vistas.h"
 int	esSolucion(char tablero[4][4], char input[4][4])
 {
 	int	correcto;
