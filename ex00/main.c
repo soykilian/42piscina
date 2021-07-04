@@ -35,6 +35,8 @@ int	main(int args, char **argv)
 	else
 		print_table(tablero);
 }
+//void parametros1(char *colUp1, char *coldown1, char *rowLeft1, char *rowRight1);
+
 
 void	print_table( char tablero[4][4])
 {
@@ -122,4 +124,38 @@ int	aceptable(char t[4][4], char input[4][4], int IJ[2], char candidato)
 			correcto = 0;
 	}
 	return (correcto);
+}
+
+int    main(int args, char **argv)
+{
+    int         i_j[2];
+    char        tablero[4][4];
+    int         solucion;
+    char        params[4][4];
+
+    i_j[0] = 0;
+    i_j[1] = 0;
+    solucion = 0;
+    if (!comprueba_params(args, argv[1], params))
+    {
+        write (1, "Error\n", 6);
+        return (0);
+    }
+;    while (i_j[0] < 4)
+    {
+        while (i_j[1] < 4)
+            tablero[i_j[0]][i_j[1]++] = '0';
+        if (i_j[1] == 4)
+        {
+            i_j[0]++;
+            i_j[1] = 0;
+        }
+    }
+    i_j[0] = 0;
+    i_j[1] = 0;
+    rascacielosBacktraking(tablero, params, &solucion, i_j);
+    if (solucion == 0)
+        write (1, "Error\n", 6);
+    else
+        print_table(params);
 }
