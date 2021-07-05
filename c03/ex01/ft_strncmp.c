@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/28 16:57:56 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/01 19:00:43 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/05 11:06:04 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,4 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	else
 		return (0);
 }
+""
