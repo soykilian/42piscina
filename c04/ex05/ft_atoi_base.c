@@ -6,23 +6,83 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 09:14:29 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/02 10:57:32y mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/05 21:28:58 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strlen(char *str)
+int	check_base(char *base)
 {
-	unsigned int	j;
+	int	l;
+	int	i;
+	int	j;
 
+	i = 0;
 	j = 0;
-	while (str[j] != '\0')
-		j++;
-	return (j);
+	l = 0;
+	while (base[i++] != 0)
+		l++;
+	i = -1;
+	if (l < 2)
+		return (0);
+	while (i++ < l - 1)
+	{
+		if (base[i] == '+' || base[i] == '-')
+			return (0);
+		while (base[j] != 0)
+		{
+			if (base[i] == base[j] && i != j)
+				return (0);
+			j++;
+		}
+		j = 0;
+	}
+	return (1);
 }
 
-char	*ft_x_16(char *str, char *base, int lbase)
+int	check_is_base(char str, char *base)
+{
+	int	i;
+
+	i = 0;
+	while (base[i] != 0)
+	{
+		if (str == base[i])
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_atoi(char *str, char *res, char *base)
+{
+	int		i;
+	int		j;
+	int		cont;
+
+	i = 0;
+	j = 0;
+	cont = 0;
+	while (str[i] != 0)
+	{
+		if (str[i] == 45)
+			cont++;
+		else if (check_is_base(str[i], base))
+			res[j++] = str[i];
+		else if ((str[i] > 8 && str[i] < 14) || str[i] == 32)
+		{
+			i++;
+			continue ;
+		}
+		else if (str[i] != '+')
+			break ;
+		i++;
+	}
+	if (cont % 2 != 0)
+		return (-1);
+	return (1);
+}
+
+void	ft_x_16(char *str, char *base, int lbase)
 {
 	int		i;
 	int		j;
@@ -32,22 +92,23 @@ char	*ft_x_16(char *str, char *base, int lbase)
 	base_16 = "0123456789abcdf";
 	i = 0;
 	j = 0;
-	ls = ft_strlen(str);
+	ls = 0;
+	while (str[i++] != 0)
+		ls++;
+	i = 0;
 	while (j < lbase)
 	{
 		if (str[i] == base[j])
 		{
 			str[i] = base_16[j];
 			j = 0;
-			if (i == ls)
+			if (i++ == ls)
 				break ;
-			i++;
 		}
 		else
 			j++;
 	}
 	str[i] = '\0';
-	return (str);
 }
 
 int	ft_atoi_base(char *str, char *base)
@@ -55,29 +116,25 @@ int	ft_atoi_base(char *str, char *base)
 	int		lbase;
 	int		i;
 	int		a;
-	char	c;
+	int		negative;
+	char	res[32];
 
-	lbase = ft_strlen(base);
+	i = 0;
+	lbase = 0;
+	if (!check_base(base))
+		return (0);
+	while (base[i++] != 0)
+		lbase++;
 	i = 0;
 	a = 0;
-	str = ft_x_16(str, base, lbase);
-	while (str[i] != 0)
+	negative = ft_atoi(str, res, base);
+	ft_x_16(res, base, lbase);
+	while (res[i] != 0)
 	{
-		if (str[i] > 57)
-			c = str[i] - 87;
+		if (res[i] > 57)
+			a = (res[i++] - 87 + (a * lbase));
 		else
-			c = str[i] - 48;
-		a = (c + a) * lbase;
-		i++;
+			a = (res[i++] - 48 + (a * lbase));
 	}
-	return (a / lbase);
-}
-
-int main(void)
-{
-	char base[5] = "mavi\0";
-	char str[6] = "vviam\0";
-
-	printf("%d", ft_atoi_base(str, base));
-	return (0);
+	return (a * negative);
 }

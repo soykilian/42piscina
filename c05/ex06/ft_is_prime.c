@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 16:57:56 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/05 13:33:54 by mclerico         ###   ########.fr       */
+/*   Created: 2021/07/05 18:44:00 by mclerico          #+#    #+#             */
+/*   Updated: 2021/07/05 18:45:42 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int ft_is_prime(int nb)
 {
-	if (n == 0)
-		return (0);
-	while (n != 0)
+	int	i;
+	int	cont;
+
+	i = 1;
+	cont = 0;
+	while (i < nb + 1)
 	{
-		if (*s1 != *s2++)
-			return (*(unsigned char *)s1 - *(unsigned char *)(s2 - 1));
-		if (*s1++ == 0)
-			break ;
-		n--;
+		if (nb % i == 0)
+			cont++;
+		i++;
 	}
-	return (0);
+	if (cont <= 2)
+		return (1);
+	else
+		return (0);
 }

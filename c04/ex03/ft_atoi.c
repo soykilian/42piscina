@@ -6,12 +6,16 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 17:59:07 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/05 11:05:15 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/05 21:27:19 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+int	ft_isspace(char c)
+{
+	if ((c > 8 && c < 14) || c == 32)
+		return (1);
+	return (0);
+}
 
 int	ft_atoi(char *str)
 {
@@ -24,24 +28,20 @@ int	ft_atoi(char *str)
 	a = 0;
 	while (str[i] != 0)
 	{
-		if (str[i] == 45 && a == 0)
+		if (str[i] == 45)
 			cont++;
 		else if (str[i] > 47 && str[i] < 58)
+			a = (a * 10 + (str[i] - 48));
+		else if (ft_isspace(str[i]))
 		{
-			a = (a + (str[i] - 48)) * 10;
-			if (str[i + 1] < 48 || str[i + 1] > 57)
-				break ;
+			i++;
+			continue ;
 		}
+		else if (str[i] != '+')
+			break ;
 		i++;
 	}
 	if (cont % 2 != 0)
 		a = a * -1;
-	return (a / 10);
-}
-
-int	main(void)
-{
-//	char text[18] = "   ---+--+1234ab56";
-	printf("%i", ft_atoi("   ---+--+1234ab56"));
-	return (0);
+	return (a);
 }
