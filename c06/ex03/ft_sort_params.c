@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 19:55:20 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/07 10:52:52 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/07 14:01:41 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ char	**sort_argv(char **argv, int n)
 	ord = 0;
 	while (ord == 0)
 	{
+		ord = 1;
 		while (i < n - 1)
 		{
-			ord = 1;
 			if (ft_strcmp(argv[i], argv[i + 1]) > 0)
 			{
 				aux = argv[i];
@@ -44,7 +44,7 @@ char	**sort_argv(char **argv, int n)
 			}
 			i++;
 		}
-		i = 0;
+		i = 1;
 	}
 	return (argv);
 }

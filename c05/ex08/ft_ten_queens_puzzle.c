@@ -6,7 +6,7 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 11:13:51 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/06 17:53:47 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/07 15:45:23 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	is_valid(int x, int y, char *p)
 
 int	solve_puzzle(char p[10], int x, int y)
 {
+	int	cont;
+
+	cont = 0;
 	while (y <= 9)
 	{
 		if (is_valid(x, y, p))
@@ -48,6 +51,7 @@ int	solve_puzzle(char p[10], int x, int y)
 			{
 				write(1, p, 10);
 				write(1, "\n", 1);
+				cont++;
 				p[x] = 0;
 				return (0);
 			}
@@ -57,7 +61,7 @@ int	solve_puzzle(char p[10], int x, int y)
 		}
 		y++;
 	}	
-	return (0);
+	return (cont);
 }
 
 int	ft_ten_queens_puzzle(void)
@@ -65,9 +69,16 @@ int	ft_ten_queens_puzzle(void)
 	char	p[10];
 	int		x;
 	int		y;
+	int		cont;
 
 	x = 0;
 	y = 0;
-	solve_puzzle(p, x, y);
+	cont = solve_puzzle(p, x, y);
+	return (cont);
+}
+
+int	main(void)
+{
+	ft_ten_queens_puzzle();
 	return (0);
 }

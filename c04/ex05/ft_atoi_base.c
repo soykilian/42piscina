@@ -6,9 +6,11 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 09:14:29 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/06 13:24:15 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/07 12:33:55 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
 
 int	check_base(char *base)
 {
@@ -62,19 +64,17 @@ int	ft_atoi(char *str, char *res, char *base)
 	i = 0;
 	j = 0;
 	cont = 0;
-	while (str[i] != 0)
+	while (((str[i] > 8 && str[i] < 14) || str[i] == 32))
+		i++;
+	while (str[i] == 45 || str[i] == 43)
 	{
-		if (str[i] == 45 && res[0] == 0)
+		if (str[i] == 45)
 			cont++;
-		else if (check_is_base(str[i], base))
-			res[j++] = str[i];
-		else if (((str[i] > 8 && str[i] < 14) || str[i] == 32) && res[0] == 0)
-		{
-			i++;
-			continue ;
-		}
-		else if (str[i] != '+')
-			break ;
+		i++;
+	}
+	while (check_is_base(str[i], base))
+	{
+		res[j++] = str[i];
 		i++;
 	}
 	if (cont % 2 != 0)
@@ -120,7 +120,6 @@ int	ft_atoi_base(char *str, char *base)
 	char	res[32];
 
 	i = 0;
-	res[0] = 0;
 	lbase = 0;
 	if (!check_base(base))
 		return (0);
