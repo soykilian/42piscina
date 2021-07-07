@@ -6,11 +6,11 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 18:44:00 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/05 18:45:42 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/06 17:52:36 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_is_prime(int nb)
+int	ft_is_prime(int nb)
 {
 	int	i;
 	int	cont;

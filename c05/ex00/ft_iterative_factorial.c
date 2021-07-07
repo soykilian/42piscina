@@ -6,19 +6,19 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 11:22:26 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/05 12:24:30 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/06 17:43:46 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_iterative_factorial(int nb)
+int	ft_iterative_factorial(int nb)
 {
 	int	i;
-	int n;
-	
+	int	n;
+
 	i = 1;
 	n = nb;
 	if (nb < 0)
-		return(0);
+		return (0);
 	else
 	{
 		while (i < nb)
@@ -27,5 +27,5 @@ int ft_iterative_factorial(int nb)
 			i++;
 		}
 	}
-	return (n);	
+	return (n);
 }

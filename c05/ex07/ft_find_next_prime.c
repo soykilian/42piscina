@@ -6,11 +6,11 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 18:46:05 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/05 18:47:53 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/06 17:53:01 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_is_prime(int nb)
+int	ft_is_prime(int nb)
 {
 	int	i;
 	int	cont;
@@ -29,7 +29,7 @@ int ft_is_prime(int nb)
 		return (0);
 }
 
-int ft_find_next_prime(int nb)
+int	ft_find_next_prime(int nb)
 {
 	int	n;
 
@@ -40,4 +40,3 @@ int ft_find_next_prime(int nb)
 	}
 	return (n);
 }
-

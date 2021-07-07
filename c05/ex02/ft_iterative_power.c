@@ -6,11 +6,11 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 12:01:24 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/05 12:17:32 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/06 17:44:58 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_iterative_power(int nb, int power)
+int	ft_iterative_power(int nb, int power)
 {
 	int	i;
 	int	n;
