@@ -6,7 +6,7 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 09:14:29 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/05 21:28:58 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/06 13:24:15 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ int	ft_atoi(char *str, char *res, char *base)
 	cont = 0;
 	while (str[i] != 0)
 	{
-		if (str[i] == 45)
+		if (str[i] == 45 && res[0] == 0)
 			cont++;
 		else if (check_is_base(str[i], base))
 			res[j++] = str[i];
-		else if ((str[i] > 8 && str[i] < 14) || str[i] == 32)
+		else if (((str[i] > 8 && str[i] < 14) || str[i] == 32) && res[0] == 0)
 		{
 			i++;
 			continue ;
@@ -120,6 +120,7 @@ int	ft_atoi_base(char *str, char *base)
 	char	res[32];
 
 	i = 0;
+	res[0] = 0;
 	lbase = 0;
 	if (!check_base(base))
 		return (0);
