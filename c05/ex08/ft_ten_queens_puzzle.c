@@ -6,7 +6,7 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 11:13:51 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/07 15:45:23 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/07 20:23:30 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,4 @@ int	ft_ten_queens_puzzle(void)
 	y = 0;
 	cont = solve_puzzle(p, x, y);
 	return (cont);
-}
-
-int	main(void)
-{
-	ft_ten_queens_puzzle();
-	return (0);
 }

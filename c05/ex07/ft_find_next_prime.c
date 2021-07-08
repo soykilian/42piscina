@@ -6,9 +6,19 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 18:46:05 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/07 16:24:46 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/07 20:23:12 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+int	ft_sqrt(int nb)
+{
+	int	i;
+
+	i = 0;
+	while (i * i <= nb && i < 46340)
+		i++;
+	return (i);
+}
 
 int	ft_is_prime(int nb)
 {
@@ -17,28 +27,25 @@ int	ft_is_prime(int nb)
 
 	i = 1;
 	cont = 0;
-	while (i < nb + 1)
+	if (nb < 2)
+		return (0);
+	while (++i <= ft_sqrt(nb))
 	{
 		if (nb % i == 0)
-			cont++;
-		i++;
+			return (0);
 	}
-	if (cont <= 2)
-		return (1);
-	else
-		return (0);
+	return (nb);
 }
 
 int	ft_find_next_prime(int nb)
 {
 	int	n;
 
-	if (nb < 2)
-		return (2);
-	n = nb;
-	while (!ft_is_prime(n))
+	n = 0;
+	while (!n)
 	{
-		n++;
+		n = ft_is_prime(nb);
+		nb++;
 	}
 	return (n);
 }

@@ -6,11 +6,9 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 12:48:17 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/06 17:50:51 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/07 20:23:43 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 int	ft_fibonacci(int index)
 {
