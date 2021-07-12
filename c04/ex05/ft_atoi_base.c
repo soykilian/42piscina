@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_base..c                                    :+:      :+:    :+:   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 09:14:29 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/07 12:33:55 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/12 16:08:29 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,59 +82,53 @@ int	ft_atoi(char *str, char *res, char *base)
 	return (1);
 }
 
-void	ft_x_16(char *str, char *base, int lbase)
+int	ft_num(char *res, char *base, int lenbase, int lres)
 {
-	int		i;
+	int		a;
+	int		i;	
 	int		j;
-	char	*base_16;
-	int		ls;
+	int		pow;
+	int		sol;
 
-	base_16 = "0123456789abcdf";
-	i = 0;
-	j = 0;
-	ls = 0;
-	while (str[i++] != 0)
-		ls++;
-	i = 0;
-	while (j < lbase)
+	i = lres;
+	j = -1;
+	sol = 0;
+	while (--i >= 0)
 	{
-		if (str[i] == base[j])
+		while (base[++j] != 0)
 		{
-			str[i] = base_16[j];
-			j = 0;
-			if (i++ == ls)
-				break ;
+			if (base[j] == res[i])
+			{
+				pow = lres - i;
+				a = j;
+				while (--pow > 0)
+					a *= lenbase;
+				sol += a;
+			}
 		}
-		else
-			j++;
+		j = 0;
 	}
-	str[i] = '\0';
+	return (sol);
 }
 
 int	ft_atoi_base(char *str, char *base)
 {
 	int		lbase;
 	int		i;
-	int		a;
 	int		negative;
 	char	res[32];
+	int		ls;
 
 	i = 0;
 	lbase = 0;
+	ls = 0;
+	while (str[ls] != 0)
+		ls++;
 	if (!check_base(base))
 		return (0);
 	while (base[i++] != 0)
 		lbase++;
 	i = 0;
-	a = 0;
 	negative = ft_atoi(str, res, base);
-	ft_x_16(res, base, lbase);
-	while (res[i] != 0)
-	{
-		if (res[i] > 57)
-			a = (res[i++] - 87 + (a * lbase));
-		else
-			a = (res[i++] - 48 + (a * lbase));
-	}
-	return (a * negative);
+	return (ft_num(res, base, lbase, ls) * negative);
 }

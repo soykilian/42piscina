@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_program.c                                 :+:      :+:    :+:   */
+/*   ft.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 18:04:31 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/07 13:46:07 by mclerico         ###   ########.fr       */
+/*   Created: 2021/07/09 10:53:49 by mclerico          #+#    #+#             */
+/*   Updated: 2021/07/09 11:13:25 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef FT_H
+# define FT_H
 
-int	main(int args, char **argv)
-{
-	int	i;
+void	ft_putchar(char c);
+void	ft_swap(int *a, int *b);
+void	ft_putstr(char *str);
+int		ft_strlen(char *str);
+int		ft_srtcmp(char *s1, char *s2);
 
-	i = 0;
-	args = args + 0;
-	while (argv[0][i] != 0)
-	{
-		write(1, &argv[0][i], 1);
-		i++;
-	}
-	write(1, "\n", 1);
-}

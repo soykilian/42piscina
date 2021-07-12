@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_recursive_factorial.c                           :+:      :+:    :+:   */
+/*   ft_print_program.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 11:40:28 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/09 12:33:05 by mclerico         ###   ########.fr       */
+/*   Created: 2021/07/06 18:04:31 by mclerico          #+#    #+#             */
+/*   Updated: 2021/07/08 17:38:18 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_recursive_factorial (int nb)
+#include <unistd.h>
+
+int	main(int args, char **argv)
 {
-	if (nb < 0)
+	int	i;
+
+	i = 0;
+	if (args < 0)
 		return (0);
-	else if (nb == 0 || nb == 1)
-		return (1);
-	else
-		nb = nb * ft_recursive_factorial(nb - 1);
-	return (nb);
+	while (argv[0][i] != 0)
+	{
+		write(1, &argv[0][i], 1);
+		i++;
+	}
+	write(1, "\n", 1);
+	return (0);
 }

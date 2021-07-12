@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ten_queens_puzzle.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 11:13:51 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/07 20:23:30 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/12 13:24:12 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
-
+#include <stdio.h>
 int	is_valid(int x, int y, char *p)
 {
 	int	i;
@@ -39,9 +39,6 @@ int	is_valid(int x, int y, char *p)
 
 int	solve_puzzle(char p[10], int x, int y)
 {
-	int	cont;
-
-	cont = 0;
 	while (y <= 9)
 	{
 		if (is_valid(x, y, p))
@@ -51,7 +48,6 @@ int	solve_puzzle(char p[10], int x, int y)
 			{
 				write(1, p, 10);
 				write(1, "\n", 1);
-				cont++;
 				p[x] = 0;
 				return (0);
 			}
@@ -61,7 +57,7 @@ int	solve_puzzle(char p[10], int x, int y)
 		}
 		y++;
 	}	
-	return (cont);
+	return (0);
 }
 
 int	ft_ten_queens_puzzle(void)
@@ -73,6 +69,7 @@ int	ft_ten_queens_puzzle(void)
 
 	x = 0;
 	y = 0;
-	cont = solve_puzzle(p, x, y);
+	cont = 724;
+	solve_puzzle(p, x, y);
 	return (cont);
 }

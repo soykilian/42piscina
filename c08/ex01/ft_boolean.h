@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_recursive_power.c                               :+:      :+:    :+:   */
+/*   ft_boolean.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 12:50:18 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/08 17:35:45 by mclerico         ###   ########.fr       */
+/*   Created: 2021/07/09 11:14:43 by mclerico          #+#    #+#             */
+/*   Updated: 2021/07/09 13:51:51 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_recursive_power(int nb, int power)
-{
-	int	n;
+#ifndef FT_BOOLEAN_H
+# define FT_BOOLEAN_H
 
-	n = nb;
-	if (power == 0)
-		return (1);
-	else if (power < 0)
-		return (0);
-	else
-		n *= ft_recursive_power(n, power - 1);
-	return (n);
-}
+# define EVEN(n)	n % 2 != 0
+
+typedef	enum {
+	true = 1,
+	false = 0
+}	t_bool;
+
+# define TRUE	true
+# define FALSE	false
+# define EVEN_MSG "I have an even number of arguments."
+# define ODD_MSG "I have an odd number of arguments."
+# define SUCCESS 0
+#endif

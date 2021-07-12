@@ -6,12 +6,22 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 18:28:37 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/08 20:36:31 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/12 14:00:31 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+
+int	ft_strlen(char *str)
+{
+	unsigned int	j;
+
+	j = 0;
+	while (str[j] != '\0')
+		j++;
+	return (j);
+}
 
 int	n_substr(char *str, char *charset, int index)
 {
@@ -32,7 +42,7 @@ int	n_substr(char *str, char *charset, int index)
 			return (n_substr(str, charset, index + i) + 1);
 		}
 	}
-	return (0);	
+	return (0);
 }
 
 void	ft_copy(int cl, char *charset, char **p, char *str)
@@ -53,14 +63,24 @@ void	ft_copy(int cl, char *charset, char **p, char *str)
 		n = n_substr(str, charset, i);
 		if (fletter == -1 && n == 0)
 			fletter = i;
-		else if (n > 0 || str[i + 1] == 0)
+		else if ((n > 0) || (n == 0 && i + 1 == ft_strlen(str)))
 		{
-			p[k] = malloc(i - fletter);
+			if (n == 0 && i + 1 == ft_strlen(str))
+				p[k] = malloc(i - fletter + 1);
+			else
+				p[k] = malloc(i - fletter);
 			while (fletter != i)
 				p[k][j++] = str[fletter++];
+			if (n == 0 && i + 1 == ft_strlen(str))
+			{
+				p[k][j] = str[fletter];
+				break ;
+			}
+			printf("Dentro: %s\n", p[0]);
 			k++;
 			fletter = -1;
-			i += n * cl - 1;
+			if (!(n == 0))
+				i += n * cl - 1;
 			j = 0;
 		}
 		i++;
@@ -89,6 +109,8 @@ char	**ft_split(char *str, char *charset)
 			i += (n_substr(str, charset, i) * cl);
 			n++;
 		}
+		else if (i + 1 == ft_strlen(str) && !n_substr(str, charset, i - cl + 1))
+			n++;
 		i++;
 	}
 	p = malloc(n * 8);
@@ -98,8 +120,11 @@ char	**ft_split(char *str, char *charset)
 
 int	main(void)
 {
-	printf("%s\n", ft_split("hola--mundo--pepe", "--")[0]);
-	printf("%s\n", ft_split("hola--mundo--pepe", "--")[1]);
-	printf("%s\n", ft_split("hola--mundo--pepe", "--")[2]);
+	char **p;
+
+	p = ft_split("hola--mundo--pepe--", "--");
+	printf("%s\n", p[0]);
+	//printf("%s\n", ft_split("hola--mundo--pepe", "--")[1]);
+	//printf("%s\n", ft_split("hola--mundo--pepe--", "--")[2]);
 	return (0);
 }

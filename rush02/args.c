@@ -1,39 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_prime.c                                      :+:      :+:    :+:   */
+/*   args.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/05 18:44:00 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/12 13:25:14 by mclerico         ###   ########.fr       */
+/*   Created: 2021/07/11 22:37:07 by mclerico          #+#    #+#             */
+/*   Updated: 2021/07/11 22:37:14 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt(int nb)
+#include <unistd.h>
+
+long	ft_atoi(char *str)
 {
-	int	i;
+	int		i;
+	int		cont;
+	long	a;
 
 	i = 0;
-	while (i * i <= nb && i < 46340)
+	cont = 0;
+	a = 0;
+	while (str[i])
+	{
+		if (!(str[i] > 47 && str[i] < 58))
+			return (-1);
+		else
+			a = (a * 10 + (str[i] - 48));
 		i++;
-	return (i);
+	}
+	if (a > 4294967295)
+		return (-1);
+	if (i > 10)
+		return (-1);
+	return (a);
 }
 
-int	ft_is_prime(int nb)
+int	check_args(int argc, char **argv)
 {
-	int	i;
-
-	i = 2;
-	if (nb < 2)
-		return (0);
-	if (nb == 2)
-		return (1);
-	while (nb / i > nb % i)
+	if (argc < 2 || argc > 3)
 	{
-		if (nb % i == 0)
-			return (0);
-		i++;
+		write(1, "Error\n", 6);
+		return (0);
+	}
+	if (ft_atoi(argv[1]) < 0)
+	{
+		write(1, "Error\n", 6);
+		return (0);
 	}
 	return (1);
 }
