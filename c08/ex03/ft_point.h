@@ -6,16 +6,15 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 20:17:00 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/12 20:25:06 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/13 14:59:23 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_POINT_h
-# define FT_ABS_H
+#ifndef FT_POINT_H
+# define FT_POINT_H
 typedef struct s_point
 {
 	int	x;
 	int	y;
 }	t_point;
 #endif
-

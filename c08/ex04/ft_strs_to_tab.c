@@ -6,13 +6,13 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 20:37:43 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/12 22:37:57 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/13 15:08:08 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "ft_str_to_tab.h"
 #include <stdlib.h>
+#include "ft_stock_str.h"
 
 char	*ft_strcpy(char *dest, char *src, int size)
 {
@@ -40,12 +40,14 @@ int	ft_strlen(char *str)
 	return (j);
 }
 
-struct	s_stock_str *ft_strs_to_tab(int ac, char **av)
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
 	t_stock_str			*s;
 	int					i;
 
 	s = malloc(sizeof(t_stock_str));
+	if (!s)
+		return (NULL);
 	i = 0;
 	while (i < ac)
 	{
@@ -56,15 +58,4 @@ struct	s_stock_str *ft_strs_to_tab(int ac, char **av)
 	}
 	s[i].str = 0;
 	return (s);
-}
-
-int main(void)
-{
-	char	**p;
-
-	p = malloc(8 * 3);
-	p[0] = "hola";
-	p[1] = "mundo";
-	p[2] = "pepe";
-	ft_strs_to_tab(3, p);
 }
