@@ -6,7 +6,7 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/12 20:37:43 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/14 11:23:28 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/14 13:20:13 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,52 +14,56 @@
 #include <stdlib.h>
 #include "ft_stock_str.h"
 
-int	ft_sizeof(char *src)
+int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (src[i] != 0)
+	while (str[i])
 		i++;
 	return (i);
 }
 
 char	*ft_strdup(char *src)
 {
-	int		len;
-	char	*p;
 	int		i;
+	int		j;
+	char	*res;
 
-	len = ft_sizeof(src);
-	p = malloc(len + 1);
-	if (!p)
-		return (NULL);
 	i = 0;
-	while (i <= len)
+	while (src[i] != '\0')
 	{
-		p[i] = src[i];
 		i++;
 	}
-	p[i] = src[i];
-	return (p);
+	res = (char *) malloc(sizeof(char) * (i + 1));
+	if (!(res))
+		return (NULL);
+	j = 0;
+	while (src[j] != '\0')
+	{
+		res[j] = src[j];
+		j++;
+	}
+	res[j] = src[j];
+	return (res);
 }
 
 struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
-	t_stock_str			*s;
-	int					i;
+	int			i;
+	t_stock_str	*res;
 
-	s = malloc(sizeof(t_stock_str) * (ac + 1));
-	if (!s)
+	res = malloc(sizeof(t_stock_str) * (ac + 1));
+	if (res == NULL)
 		return (NULL);
 	i = 0;
 	while (i < ac)
 	{
-		s[i].size = ft_sizeof(av[i]);
-		s[i].str = av[i];
-		s[i].copy = ft_strdup(av[i]);
+		res[i].size = ft_strlen(av[i]);
+		res[i].str = av[i];
+		res[i].copy = ft_strdup(av[i]);
 		i++;
 	}
-	s[i].str = 0;
-	return (s);
+	res[i].str = 0;
+	return (res);
 }
