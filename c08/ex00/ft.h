@@ -6,7 +6,7 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/09 10:53:49 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/13 14:57:59 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/13 20:56:23 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FT_H
@@ -16,5 +16,5 @@ void	ft_putchar(char c);
 void	ft_swap(int *a, int *b);
 void	ft_putstr(char *str);
 int		ft_strlen(char *str);
-int		ft_srtcmp(char *s1, char *s2);
+int		ft_strcmp(char *s1, char *s2);
 #endif

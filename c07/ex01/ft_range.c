@@ -6,7 +6,7 @@
 /*   By: mclerico <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 15:45:47 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/08 17:14:39 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/13 16:43:22 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	*ft_range(int min, int max)
 	while (min < max)
 	{
 		p[i++] = min++;
-		printf("%d", p[i - 1]);
 	}		
 	return (p);
 }

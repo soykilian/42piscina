@@ -6,22 +6,12 @@
 /*   By: mclerico <mclerico@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 18:28:37 by mclerico          #+#    #+#             */
-/*   Updated: 2021/07/12 14:00:31 by mclerico         ###   ########.fr       */
+/*   Updated: 2021/07/13 15:18:13 by mclerico         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
-
-int	ft_strlen(char *str)
-{
-	unsigned int	j;
-
-	j = 0;
-	while (str[j] != '\0')
-		j++;
-	return (j);
-}
 
 int	n_substr(char *str, char *charset, int index)
 {
@@ -45,53 +35,83 @@ int	n_substr(char *str, char *charset, int index)
 	return (0);
 }
 
+void	copiame_esta(int count[4], int n, char **p, char *str)
+{
+	int	j;
+
+	j = 0;
+	if (n == 0 && count[0] + 1 == count[3])
+		count[0]++;
+	p[count[2]] = malloc(count[0] - count[1]);
+	while (count[0] != count[1])
+		p[count[2]][j++] = str[count[1]++];
+	count[2]++;
+	count[1] = -1;
+}
+
 void	ft_copy(int cl, char *charset, char **p, char *str)
 {
-	int		i;
-	int		j;
-	int		k;
-	int		fletter;
+	int		c[4];
 	int		n;
 
+	c[3] = 0;
+	while (str[c[3]] != '\0')
+		c[3]++;
+	c[0] = 0;
+	c[1] = -1;
+	c[2] = 0;
 	n = 0;
+	while (str[c[0]] != 0)
+	{
+		n = n_substr(str, charset, c[0]);
+		if (c[1] == -1 && n == 0)
+			c[1] = c[0];
+		else if (((n > 0) || (n == 0 && c[0] + 1 == c[3])) && c[1] != -1)
+		{
+			copiame_esta(c, n, p, str);
+			if (!(n == 0))
+				c[0] += n * cl - 1;
+		}
+		else if (n != 0 && c[1] == -1)
+			c[0] += n * cl - 1;
+		c[0]++;
+	}
+}
+
+int	count_words(char *str, char *charset, int cl, int size)
+{
+	int	n;
+	int	i;
+	int	c;
+	int	fletter;
+
 	i = 0;
+	n = 0;
+	c = 0;
 	fletter = -1;
-	j = 0;
-	k = 0;
 	while (str[i] != 0)
 	{
-		n = n_substr(str, charset, i);
-		if (fletter == -1 && n == 0)
-			fletter = i;
-		else if ((n > 0) || (n == 0 && i + 1 == ft_strlen(str)))
+		c = n_substr(str, charset, i);
+		if (fletter == -1 && c == 0)
+			fletter = 0;
+		else if (c != 0 && fletter == 0)
 		{
-			if (n == 0 && i + 1 == ft_strlen(str))
-				p[k] = malloc(i - fletter + 1);
-			else
-				p[k] = malloc(i - fletter);
-			while (fletter != i)
-				p[k][j++] = str[fletter++];
-			if (n == 0 && i + 1 == ft_strlen(str))
-			{
-				p[k][j] = str[fletter];
-				break ;
-			}
-			printf("Dentro: %s\n", p[0]);
-			k++;
+			i += (n_substr(str, charset, i) * cl);
 			fletter = -1;
-			if (!(n == 0))
-				i += n * cl - 1;
-			j = 0;
+			n++;
 		}
+		else if (i + 1 == size && !n_substr(str, charset, i - cl + 1))
+			n++;
 		i++;
 	}
+	return (n);
 }
 
 char	**ft_split(char *str, char *charset)
 {
 	char	**p;
 	int		i;
-	int		fletter;
+	int		c;
 	int		n;
 	int		cl;
 
@@ -99,32 +119,13 @@ char	**ft_split(char *str, char *charset)
 	i = 0;
 	n = 0;
 	cl = 0;
-	fletter = -1;
+	c = 0;
+	while (str[c] != '\0')
+		c++;
 	while (charset[cl] != 0)
 		cl++;
-	while (str[i] != 0)
-	{
-		if (str[i] == charset[0])
-		{
-			i += (n_substr(str, charset, i) * cl);
-			n++;
-		}
-		else if (i + 1 == ft_strlen(str) && !n_substr(str, charset, i - cl + 1))
-			n++;
-		i++;
-	}
+	n = count_words(str, charset, cl, c);
 	p = malloc(n * 8);
 	ft_copy(cl, charset, p, str);
 	return (p);
-}
-
-int	main(void)
-{
-	char **p;
-
-	p = ft_split("hola--mundo--pepe--", "--");
-	printf("%s\n", p[0]);
-	//printf("%s\n", ft_split("hola--mundo--pepe", "--")[1]);
-	//printf("%s\n", ft_split("hola--mundo--pepe--", "--")[2]);
-	return (0);
 }
